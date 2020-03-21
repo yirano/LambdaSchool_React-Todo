@@ -14,7 +14,10 @@ const TodoForm = props => {
           value={props.input}
           onChange={e => props.handleChange(e)}
         />
-        <Button type="submit">Submit</Button>
+        <Button
+          type="submit"
+          disabled={!props.input}
+        >Submit</Button >
       </form>
       <Button onClick={props.handleClear}>Clear Completed</Button>
     </div>

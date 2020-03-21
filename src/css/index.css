@@ -15,6 +15,11 @@ body {
   margin-bottom: 40px;
 }
 
+.todoForm form {
+  display: flex;
+
+}
+
 .todoListContainer {
   display: flex;
   flex-direction: column;
