@@ -16,7 +16,7 @@ const TodoForm = props => {
         />
         <Button
           type="submit"
-          disabled={!props.input}
+          disabled={!props.input.trim()}
         >Submit</Button >
       </form>
       <Button onClick={props.handleClear}>Clear Completed</Button>
