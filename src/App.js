@@ -5,8 +5,8 @@ import "./css/index.css";
 
 class App extends Component {
   todoData;
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       todo: this.todoData || [],
       complete: false,
@@ -18,17 +18,19 @@ class App extends Component {
   // submits the task and renders to list
   handleSubmit = e => {
     e.preventDefault();
-    this.setState({
-      todo: [
-        ...this.state.todo,
-        {
-          input: this.state.input,
-          complete: false,
-          id: Date.now(),
-          className: "todoCard"
-        }
-      ],
-      input: ""
+    this.setState(prev => {
+      return {
+        todo: [
+          ...prev.todo,
+          {
+            input: this.state.input,
+            complete: false,
+            id: Date.now(),
+            className: "todoCard"
+          }
+        ],
+        input: ""
+      }
     });
   };
 
@@ -39,10 +41,12 @@ class App extends Component {
 
   // clear lists with a true bool
   handleClear = () => {
-    this.setState({
-      todo: this.state.todo.filter(filter => {
-        return filter.complete === false;
-      })
+    this.setState(prev => {
+      return {
+        todo: prev.todo.filter(filter => {
+          return filter.complete === false;
+        })
+      }
     });
   };
 
