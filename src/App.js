@@ -82,19 +82,20 @@ class App extends Component {
   }
 
   render() {
-    const { input, id, complete, style } = this.state;
+    const { todo, input, complete } = this.state;
+    const { handleClear, handleComplete } = this;
     return (
       <div className="container">
         <TodoForm
           input={input}
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
-          handleClear={this.handleClear}
+          handleClear={handleClear}
         />
         <TodoList
-          todo={this.state.todo}
-          complete={this.state.complete}
-          handleComplete={this.handleComplete}
+          todo={todo}
+          complete={complete}
+          handleComplete={handleComplete}
         />
       </div>
     );
