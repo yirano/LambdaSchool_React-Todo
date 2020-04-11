@@ -8,7 +8,7 @@ const TodoList = props => {
         <>
           {console.log(task.className)}
           <Todo
-            className={task.className}
+            className={task.complete ? "todoCard completed" : "todoCard"}
             id={task.id}
             todo={task}
             complete={props.complete}

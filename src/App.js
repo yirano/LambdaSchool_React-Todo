@@ -52,18 +52,13 @@ class App extends Component {
 
   // handles event when task is clicked
   handleComplete = e => {
-    this.state.todo.map(list => {
-      return (list.complete =
-        Number(list.id) === Number(e.target.id)
-          ? !list.complete
-          : list.complete);
-    });
-
-    const completedClass = this.state.todo.map(list => {
-      return (list.className =
-        list.complete === true ? "todoCard completed" : "todoCard");
-    });
-    return this.setState({ className: completedClass });
+    this.setState({
+      todo: this.state.todo.map(list => {
+          return (Number(list.id) === Number(e.target.id)
+              ? {input: list.input, complete: !list.complete, id: list.id, className: list.className}
+              : list);
+        })
+    })
   };
 
   componentDidMount() {
