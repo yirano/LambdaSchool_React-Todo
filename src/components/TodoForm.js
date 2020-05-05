@@ -1,27 +1,29 @@
-import React from "react";
+import React, { Component } from 'react'
 import { Input, Button } from "@material-ui/core";
 
-const TodoForm = props => {
-  console.log(props);
-  return (
-    <div className="todoForm" onClick={props.handleComplete}>
-      <form onSubmit={props.handleSubmit}>
-        <Input
-          id="input"
-          type="text"
-          name="task"
-          placeholder="What is your task?"
-          value={props.input}
-          onChange={e => props.handleChange(e)}
-        />
-        <Button
-          type="submit"
-          disabled={!props.input.trim()}
-        >Submit</Button >
-      </form>
-      <Button onClick={props.handleClear}>Clear Completed</Button>
-    </div>
-  );
-};
+export class TodoForm extends Component {
+  render() {
+    return (
+      <div className="todoForm" onClick={this.props.handleComplete}>
+        <form onSubmit={this.props.handleSubmit}>
+          <Input
+            id="input"
+            type="text"
+            name="task"
+            placeholder="What is your task?"
+            value={this.props.input}
+            onChange={e => this.props.handleChange(e)}
+          />
+          <Button
+            type="submit"
+            disabled={!this.props.input.trim()}
+          >Submit</Button >
+        </form>
+        <Button onClick={this.props.handleClear}>Clear Completed</Button>
+      </div>
+    );
+  }
+}
 
-export default TodoForm;
+export default TodoForm
+
