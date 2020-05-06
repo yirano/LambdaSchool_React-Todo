@@ -6,7 +6,7 @@ export class TodoList extends Component {
     const { todo, complete, handleComplete, search } = this.props;
     console.log("TodoList -> render -> todo", todo)
 
-    const value = todo.filter(t => t.input.toLowerCase().includes(search.toLowerCase()))
+    const value = todo.filter(t => t.input.toLowerCase().includes(search.toLowerCase().trim()))
 
     return (
       <div className="todoListContainer">
