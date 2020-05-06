@@ -40,9 +40,7 @@ class App extends Component {
 
   // keeps track of change happening in input
   handleChange = e => {
-    e.target.name === 'search' ?
-      this.setState({ search: e.target.value }) :
-      this.setState({ input: e.target.value });
+    this.setState({ [e.target.name]: e.target.value })
     console.log(e.target.name, e.target.value);
   };
 
