@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+
+import Draggable, { DraggableCore } from 'react-draggable'
+
 import Todo from './Card'
 
 export class TodoList extends Component {
@@ -12,14 +15,25 @@ export class TodoList extends Component {
       <div className="todoListContainer">
         {value.map(task => (
           <>
-            <Todo
-              className={task.complete ? "todoCard completed" : "todoCard"}
-              id={task.id}
-              key={task.id}
-              todo={task}
-              complete={complete}
-              handleComplete={handleComplete}
-            />
+            <Draggable
+              axis="x"
+              handle=".handle"
+              defaultPosition={{ x: 0, y: 0 }}
+              position={null}
+              grid={[25, 25]}
+              scale={1}
+              onStart={this.handleStart}
+              onDrag={this.handleDrag}
+              onStop={this.handleStop}>
+              <Todo
+                className={task.complete ? "todoCard completed" : "todoCard"}
+                id={task.id}
+                key={task.id}
+                todo={task}
+                complete={complete}
+                handleComplete={handleComplete}
+              />
+            </Draggable>
           </>
         ))}
       </div>

@@ -9,7 +9,7 @@ export class TodoForm extends Component {
           <Input
             id="input"
             type="text"
-            name="task"
+            name="input"
             placeholder="What is your task?"
             value={this.props.input}
             onChange={e => this.props.handleChange(e)}
