@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
-import Todo from './Todo'
+import Todo from './Card'
 
 export class TodoList extends Component {
-  render(props) {
-    const { todo, complete, handleComplete } = this.props;
+  render() {
+    const { todo, complete, handleComplete, search } = this.props;
+    console.log("TodoList -> render -> todo", todo)
+
+    const value = todo.filter(t => t.input.toLowerCase().includes(search))
+
     return (
       <div className="todoListContainer">
-        {todo.map(task => (
+        {value.map(task => (
           <>
-            {console.log(task.className)}
             <Todo
               className={task.complete ? "todoCard completed" : "todoCard"}
               id={task.id}
+              key={task.id}
               todo={task}
               complete={complete}
               handleComplete={handleComplete}

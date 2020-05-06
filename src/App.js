@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import TodoList from "./components/TodoList";
-import TodoForm from "./components/TodoForm";
+import TodoList from "./components/List";
+import TodoForm from "./components/Form";
 import "./css/index.css";
 
 class App extends Component {
@@ -11,7 +11,8 @@ class App extends Component {
       todo: this.todoData || [],
       complete: false,
       input: "",
-      className: "todoCard"
+      className: "todoCard",
+      search: ''
     };
   }
 
@@ -29,14 +30,20 @@ class App extends Component {
             className: "todoCard"
           }
         ],
-        input: ""
+        input: "",
+        search: this.state.search
       }
     });
+
+    console.log(this.state);
   };
 
   // keeps track of change happening in input
   handleChange = e => {
-    this.setState({ input: e.target.value });
+    e.target.name === 'search' ?
+      this.setState({ search: e.target.value }) :
+      this.setState({ input: e.target.value });
+    console.log(e.target.name, e.target.value);
   };
 
   // clear lists with a true bool
@@ -54,10 +61,10 @@ class App extends Component {
   handleComplete = e => {
     this.setState({
       todo: this.state.todo.map(list => {
-          return (Number(list.id) === Number(e.target.id)
-              ? {input: list.input, complete: !list.complete, id: list.id, className: list.className}
-              : list);
-        })
+        return (Number(list.id) === Number(e.target.id)
+          ? { input: list.input, complete: !list.complete, id: list.id, className: list.className }
+          : list);
+      })
     })
   };
 
@@ -77,17 +84,19 @@ class App extends Component {
   }
 
   render() {
-    const { todo, input, complete } = this.state;
+    const { todo, input, complete, search } = this.state;
     const { handleClear, handleComplete } = this;
     return (
       <div className="container">
         <TodoForm
           input={input}
+          search={search}
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
           handleClear={handleClear}
         />
         <TodoList
+          search={search}
           todo={todo}
           complete={complete}
           handleComplete={handleComplete}
